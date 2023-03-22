@@ -4,7 +4,7 @@ BONUS 1:
 Trasformare la stringa foto in una immagine effettiva
 BONUS 2:
 Organizzare i singoli membri in card/schede. */
- 		        
+
 const ourTeam = [
     {
         name: "Wayne",
@@ -46,34 +46,22 @@ const ourTeam = [
 
 
 //Dom Elements
-const myList = document.getElementById("my-list");
+const myCardContainer = document.getElementById("my-card-container");
 
 
-console.log(ourTeam);
-for(let i = 0; i < ourTeam.length; i++) {
+let cards = "";
+for (let i = 0; i < ourTeam.length; i++) {
     let teamMate = ourTeam[i];
-    console.log(teamMate);
-    //creo li e lo metto nel dom
-    const myListItem = document.createElement("li");
-    myList.append(myListItem);
 
-    for(let key in teamMate) {
-        console.log(key, ":", teamMate[key]);
-        const myListItemPropreties = document.createElement("div");
-        myListItemPropreties.innerHTML = propretieSelect(key, teamMate[key]);
-        myListItem.append(myListItemPropreties);
-    }
+    cards +=    `
+                     <div class="card" style="width: calc(100% / 3 - 2rem);">
+                        <img src="img/${teamMate.img}" class="card-img-top" alt="">
+                        <div class="card-body text-center">
+                            <h5 class="card-title">${teamMate.surname} ${teamMate.name}</h5>
+                            <p class="card-text">${teamMate.rule}</p>
+                        </div>
+                    </div>
+                `;
 }
+myCardContainer.innerHTML = cards;
 
-
-//
-
-function propretieSelect(prop, objectProp) {
-    let myInnerTxt; 
-    if(prop === "img"){
-        myInnerTxt = `<img src="img/${objectProp}" alt="">`;
-    }else {
-        myInnerTxt = `${prop}: ${objectProp}`;
-    }
-    return myInnerTxt;
-} 
