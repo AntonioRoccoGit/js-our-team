@@ -1,6 +1,5 @@
 /*
-MILESTONE 2:
-Stampare le stesse informazioni su DOM sottoforma di stringhe
+
 BONUS 1:
 Trasformare la stringa foto in una immagine effettiva
 BONUS 2:
@@ -45,12 +44,36 @@ const ourTeam = [
     }
 ];
 
+
+//Dom Elements
+const myList = document.getElementById("my-list");
+
+
 console.log(ourTeam);
 for(let i = 0; i < ourTeam.length; i++) {
     let teamMate = ourTeam[i];
     console.log(teamMate);
+    //creo li e lo metto nel dom
+    const myListItem = document.createElement("li");
+    myList.append(myListItem);
 
     for(let key in teamMate) {
         console.log(key, ":", teamMate[key]);
+        const myListItemPropreties = document.createElement("div");
+        myListItemPropreties.innerHTML = propretieSelect(key, teamMate[key]);
+        myListItem.append(myListItemPropreties);
     }
 }
+
+
+//
+
+function propretieSelect(prop, objectProp) {
+    let myInnerTxt; 
+    if(prop === "img"){
+        myInnerTxt = `<img src="img/${objectProp}" alt="">`;
+    }else {
+        myInnerTxt = `${prop}: ${objectProp}`;
+    }
+    return myInnerTxt;
+} 
